@@ -1,28 +1,26 @@
-def robot_guess_book_id():
-    print("Robot will guess your secret Book_id!")
-    print("Choose a number between 1 and 100 (but don’t tell me)")
-
-    input("Press Enter when you are ready")
-
-    low=1
-    high=100
-    attempts=0
+def binary_search_book(book_ids,target_id):
+    low=0
+    high=len(book_ids)-1
 
     while low<=high:
         mid=(low+high)//2
-        print("Is your Book ID",mid,"?")
-        feedback=input("Enter 'Too low','Too high',or 'correct':").strip().lower()
-        attempts +=1
 
-        if feedback== 'correct':
-            print("Yay! I guessed it in" ,attempts ,"tries")
-            break
-        elif feedback == 'too low':
+        if book_ids[mid]==target_id:
+            return mid
+        elif book_ids[mid]<target_id:
             low=mid+1
-        elif feedback == 'too high':
-            high =mid-1
         else:
-            print("Please enter a valid response")
-            attempts -= 1
+            high=mid-1
+    return -1 
 
-robot_guess_book_id()
+book_ids=[101, 123, 145, 160, 172, 189, 201, 215, 230]
+
+print("Available Book IDs: ",book_ids)
+target=int(input("Enter the Book ID to Search for "))
+
+result = binary_search_book(book_ids,target)
+
+if result!=-1:
+    print("Found at",result,"position in the list")
+else:
+    print(target,"not found") 
