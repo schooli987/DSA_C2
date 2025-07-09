@@ -1,39 +1,31 @@
-def secret_word_finder():
-    print("Secret Word Finder – Let's play with Binary Search!")
+def secret_word_finder_from_text():
+    print("Secret Word Finder")
     
-    word_list = ["apple", "banana", "cherry", "grape", "kiwi", 
-                 "mango", "peach", "pear", "plum", "watermelon"]
+    # Get sentence input
+    sentence = input("Enter a sentence or paragraph: ").lower()
+    words = sorted(sentence.split())  # Sort the words for binary search
     
-    word_list.sort()  # Ensure list is sorted
-    print("Here's the list of words:")
-    print(word_list)
+    # Display sorted word list (optional for debugging)
+    print("Sorted words:", words)
 
-    print("\nChoose a secret word from the list and don’t tell me!")
-    input("Press Enter when you're ready...")
+    # Get the word to search
+    target = input("Enter the secret word to find: ").strip().lower()
 
+    # Binary Search
     low = 0
-    high = len(word_list) - 1
-    attempts = 0
+    high = len(words) - 1
 
     while low <= high:
         mid = (low + high) // 2
-        guess = word_list[mid]
-        print("\n Is your word",guess,"?")
-        feedback = input("Type 'Before', 'After', or 'Correct': ").strip().lower()
-        attempts += 1
-
-        if feedback == "correct":
-            print("I found your secret word",guess,"in",attempts,"tries!")
-            break
-        elif feedback == "before":
-            high = mid - 1
-        elif feedback == "after":
+        if words[mid] == target:
+            print("✅ Secret word found!")
+            return
+        elif words[mid] < target:
             low = mid + 1
         else:
-            print("Please enter a valid response: 'Before', 'After', or 'Correct'.")
-            attempts -= 1  # Don't count invalid input
+            high = mid - 1
 
-    else:
-        print(" I couldn't guess it. Did you choose a word from the list?")
+    print("❌ Secret word not found.")
 
-secret_word_finder()
+# Run the game
+secret_word_finder_from_text()
