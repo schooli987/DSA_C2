@@ -18,14 +18,14 @@ def secret_word_finder_from_text():
     while low <= high:
         mid = (low + high) // 2
         if words[mid] == target:
-            print("✅ Secret word found!")
+            print("Secret word found!")
             return
         elif words[mid] < target:
             low = mid + 1
         else:
             high = mid - 1
 
-    print("❌ Secret word not found.")
+    print("Secret word not found.")
 
 # Run the game
 secret_word_finder_from_text()
