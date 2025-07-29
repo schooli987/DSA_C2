@@ -1,7 +1,7 @@
 import random
 
 def book_id_search_challenge():
-    print("📚 Welcome to the Book ID Finder Challenge!")
+    print("Welcome to the Book ID Finder Challenge!")
 
     # Step 1: Generate a large sorted list of random Book IDs
     book_ids = sorted(random.sample(range(1000, 9999), 100))  # 100 unique IDs between 1000–9999
@@ -13,7 +13,7 @@ def book_id_search_challenge():
     try:
         target = int(input("\nEnter the Book ID you want to search for: "))
     except ValueError:
-        print("❌ Invalid input! Please enter a number.")
+        print("Invalid input! Please enter a number.")
         return
 
     # Step 4: Binary Search Logic
@@ -24,7 +24,7 @@ def book_id_search_challenge():
     while low <= high:
         mid = (low + high) // 2
         if book_ids[mid] == target:
-            print(f"✅ Book ID {target} found at position {mid} in the list!")
+            print(f"Book ID {target} found at position {mid} in the list!")
             found = True
             break
         elif book_ids[mid] < target:
@@ -34,7 +34,7 @@ def book_id_search_challenge():
 
     # Step 5: If not found
     if not found:
-        print("❌ Book ID not found in the list.")
+        print("Book ID not found in the list.")
 
 # Run the search
 book_id_search_challenge()
